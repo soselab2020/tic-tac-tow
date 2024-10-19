@@ -14,7 +14,12 @@
 			td {
 				width: 100px;
 				text-align: center;
+                
 			}
+            #status {
+                margin-top: 20px;
+                font-size: 24px;
+            }
         </style>
         <script>
 		var count = 0; 
@@ -30,10 +35,12 @@
 				currentSelection.innerHTML = 'X'; 
 				player = 2; 
 				count++; 
+                updateStatus();
 			} else if (player == 2) {
 				currentSelection.innerHTML = 'O'; 
 				player = 1; 
 				count++;
+                updateStatus();
 			}
 			
 			for (var i = 1; i <= 3; i++) {
@@ -78,6 +85,13 @@
 			}			
 			
 		}
+        function updateStatus() {
+            document.getElementById("status").innerHTML = "目前是 " + (player == 1 ? "X" : "O") + " 的回合";
+        }
+
+        window.onload = function() {
+            updateStatus();
+        }
              
         </script>
     </head>
@@ -99,5 +113,6 @@
                 <td id='grid33' onclick="determine(id);"></td>
             </tr>
         </table>
+        <div id="status"></div>
     </body>
 </html>
