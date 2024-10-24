@@ -5,6 +5,7 @@
 		<title>tic-tac-toe</title> 
         <style type = "text/CSS">
             .symbol {
+		    		color: #313f48;
 				font-family: Calibri;
 				font-size: 48px;
             }
@@ -25,7 +26,7 @@
 			var currentSelection = document.getElementById(id);		
 
 			if (currentSelection.innerHTML) {
-				window.alert("此位置無法選取！");
+				window.alert("Can't place this here！");
 			} else if (player == 1) {
 				currentSelection.innerHTML = 'X'; 
 				player = 2; 
@@ -60,19 +61,19 @@
 			if (isLine == true) {			
 				if (currentSelection.innerHTML == "O") {
 					setTimeout(() => { 
-						window.alert("O贏了！"); 
+						window.alert("Knots have won！"); 
 						location.reload();
 					}, 300) ;					
 				}
 				else if (currentSelection.innerHTML == "X") {
 					setTimeout(() => { 
-						window.alert("X贏了！"); 
+						window.alert("Crosses have won！"); 
 						location.reload();
 					}, 300) ;		
 				}
 			} else if (count == 9) {
 				setTimeout(() => { 
-					window.alert("平手"); 
+					window.alert("It's a draw!"); 
 					location.reload();
 				}, 300) ;		
 			}			
