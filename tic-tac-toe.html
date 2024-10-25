@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-		<title>tic-tac-toe</title> 
+		<title>井字遊戲</title> 
         <style type = "text/CSS">
             .symbol {
 				font-family: Calibri;
@@ -60,19 +60,19 @@
 			if (isLine == true) {			
 				if (currentSelection.innerHTML == "O") {
 					setTimeout(() => { 
-						window.alert("O贏了！"); 
+						window.alert("O贏了:D"); 
 						location.reload();
 					}, 300) ;					
 				}
 				else if (currentSelection.innerHTML == "X") {
 					setTimeout(() => { 
-						window.alert("X贏了！"); 
+						window.alert("X贏了:D"); 
 						location.reload();
 					}, 300) ;		
 				}
 			} else if (count == 9) {
 				setTimeout(() => { 
-					window.alert("平手"); 
+					window.alert("平手>w<"); 
 					location.reload();
 				}, 300) ;		
 			}			
