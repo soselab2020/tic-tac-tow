@@ -4,9 +4,16 @@
         <meta charset="utf-8">
 		<title>tic-tac-toe</title> 
         <style type = "text/CSS">
+			.container {
+				display: flex;
+				justify-content: center; 
+				align-items: center;     
+				height: 100vh;           
+			}
             .symbol {
 				font-family: Calibri;
 				font-size: 48px;
+				right:50vh;
             }
 			tr {
 				height: 100px;
@@ -82,22 +89,24 @@
         </script>
     </head>
     <body>
-        <table id="table" border="1px" class="symbol">
-            <tr>
-                <td id='grid11' onclick="determine(id);"></td>
-                <td id='grid12' onclick="determine(id);"></td>
-                <td id='grid13' onclick="determine(id);"></td>
-            </tr>
-            <tr>
-                <td id='grid21' onclick="determine(id);"></td>
-                <td id='grid22' onclick="determine(id);"></td>
-                <td id='grid23' onclick="determine(id);"></td>
-            </tr>
-            <tr>
-                <td id='grid31' onclick="determine(id);"></td>
-                <td id='grid32' onclick="determine(id);"></td>
-                <td id='grid33' onclick="determine(id);"></td>
-            </tr>
-        </table>
+		<div class="container">
+			<table id="table" border="1px" class="symbol">
+				<tr>
+					<td id='grid11' onclick="determine(id);"></td>
+					<td id='grid12' onclick="determine(id);"></td>
+					<td id='grid13' onclick="determine(id);"></td>
+				</tr>
+				<tr>
+					<td id='grid21' onclick="determine(id);"></td>
+					<td id='grid22' onclick="determine(id);"></td>
+					<td id='grid23' onclick="determine(id);"></td>
+				</tr>
+				<tr>
+					<td id='grid31' onclick="determine(id);"></td>
+					<td id='grid32' onclick="determine(id);"></td>
+					<td id='grid33' onclick="determine(id);"></td>
+				</tr>
+			</table>
+		</div>
     </body>
 </html>
