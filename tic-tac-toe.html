@@ -4,17 +4,22 @@
         <meta charset="utf-8">
 		<title>tic-tac-toe</title> 
         <style type = "text/CSS">
-            .symbol {
-				font-family: Calibri;
-				font-size: 48px;
-            }
-			tr {
-				height: 100px;
-			}
-			td {
-				width: 100px;
-				text-align: center;
-			}
+		body{ 
+			background-color: orange;
+		}
+            	
+		.symbol {
+			font-family: 'Roboto';
+			font-size: 48px;
+			color: red;
+            	}
+		tr {
+			height: 100px;
+		}
+		td {
+			width: 100px;
+			text-align: center;
+		}
         </style>
         <script>
 		var count = 0; 
@@ -25,7 +30,7 @@
 			var currentSelection = document.getElementById(id);		
 
 			if (currentSelection.innerHTML) {
-				window.alert("此位置無法選取！");
+				window.alert("This location is unavailable！");
 			} else if (player == 1) {
 				currentSelection.innerHTML = 'X'; 
 				player = 2; 
@@ -60,19 +65,19 @@
 			if (isLine == true) {			
 				if (currentSelection.innerHTML == "O") {
 					setTimeout(() => { 
-						window.alert("O贏了！"); 
+						window.alert("O wins！"); 
 						location.reload();
 					}, 300) ;					
 				}
 				else if (currentSelection.innerHTML == "X") {
 					setTimeout(() => { 
-						window.alert("X贏了！"); 
+						window.alert("X wins！"); 
 						location.reload();
 					}, 300) ;		
 				}
 			} else if (count == 9) {
 				setTimeout(() => { 
-					window.alert("平手"); 
+					window.alert("Tie Match"); 
 					location.reload();
 				}, 300) ;		
 			}			
