@@ -42,7 +42,6 @@
 				}				
 			}
 
-			// 檢查獲勝情況
 			for (var i = 1; i <= 3; i++) {
 				if ((grids[i][1] != "") && (grids[i][1] == grids[i][2]) && (grids[i][2] == grids[i][3])) {
 					isLine = true;
@@ -71,7 +70,7 @@
 						resetGame();
 					}, 300);
 				}
-				updateScoreDisplay(); // 更新得分顯示
+				updateScoreDisplay();
 			} else if (count == 9) {
 				setTimeout(() => { 
 					window.alert("平手"); 
@@ -81,14 +80,14 @@
 		}
 
 		function resetGame() {
-			count = 0; 
-			player = 1; 
+			count = 0;
+			player = 1;
 			for (var i = 1; i <= 3; i++) {
 				for (var j = 1; j <= 3; j++) {
 					document.getElementById("grid" + i + j).innerHTML = "";
 				}
 			}
-			// 不再重置得分，僅清空棋盤
+			
 		}
 
 		function updateScoreDisplay() {
