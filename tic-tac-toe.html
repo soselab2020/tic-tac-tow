@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-		<title>tic-tac-toe changed</title> 
-        <style type = "text/CSS">
+		<title>Tic-Tac-Toe</title> 
+        <style type="text/CSS">
             .symbol {
 				font-family: Calibri;
 				font-size: 48px;
@@ -19,6 +19,9 @@
         <script>
 		var count = 0; 
 		var player = 1;
+		var scoreX = 0;
+		var scoreO = 0;
+
 		function determine(id) {
 			var grids = [];
 			var isLine = false;
@@ -26,62 +29,71 @@
 
 			if (currentSelection.innerHTML) {
 				window.alert("此位置無法選取！");
-			} else if (player == 1) {
-				currentSelection.innerHTML = 'X'; 
-				player = 2; 
+			} else {
+				currentSelection.innerHTML = player == 1 ? 'X' : 'O'; 
 				count++; 
-			} else if (player == 2) {
-				currentSelection.innerHTML = 'O'; 
-				player = 1; 
-				count++;
+				player = player == 1 ? 2 : 1; 
 			}
 			
 			for (var i = 1; i <= 3; i++) {
 				grids[i] = [];
 				for (var j = 1; j <= 3; j++) {
 					grids[i][j] = document.getElementById("grid" + i + j).innerHTML;
-					console.log("i: " + i + ", j: " + j + ", value: " + grids[i][j]);
 				}				
 			}
 
+			// 檢查獲勝情況
 			for (var i = 1; i <= 3; i++) {
-				if ((grids[i][1] != "") && (grids[i][1] == grids[i][2]) && (grids[i][2]== grids[i][3])) {
+				if ((grids[i][1] != "") && (grids[i][1] == grids[i][2]) && (grids[i][2] == grids[i][3])) {
 					isLine = true;
 				}
-				if ((grids[1][i] != "") && (grids[1][i] == grids[2][i]) && ( grids[2][i] == grids[3][i])) {
+				if ((grids[1][i] != "") && (grids[1][i] == grids[2][i]) && (grids[2][i] == grids[3][i])) {
 					isLine = true;
 				}				
 			}
 			
-			if (((grids[1][1] != "") && (grids[1][1] == grids[2][2]) && (grids[2][2]== grids[3][3])) || ((grids[3][1] != "") && (grids[3][1] == grids[2][2]) && (grids[2][2]== grids[1][3]))) {
+			if (((grids[1][1] != "") && (grids[1][1] == grids[2][2]) && (grids[2][2] == grids[3][3])) || 
+                ((grids[3][1] != "") && (grids[3][1] == grids[2][2]) && (grids[2][2] == grids[1][3]))) {
 				isLine = true;
 			}
 			
-			if (isLine == true) {			
+			if (isLine) {			
 				if (currentSelection.innerHTML == "O") {
+					scoreO++;
 					setTimeout(() => { 
-						window.alert("是O贏了！"); 
-						location.reload();
-					}, 300) ;					
-				}
-				else if (currentSelection.innerHTML == "X") {
+						window.alert("是O贏了！目前得分：X=" + scoreX + "，O=" + scoreO); 
+						resetGame();
+					}, 300);
+				} else {
+					scoreX++;
 					setTimeout(() => { 
-						window.alert("是X贏了！"); 
-						location.reload();
-					}, 300) ;		
+						window.alert("是X贏了！目前得分：X=" + scoreX + "，O=" + scoreO); 
+						resetGame();
+					}, 300);
 				}
 			} else if (count == 9) {
 				setTimeout(() => { 
 					window.alert("平手"); 
-					location.reload();
-				}, 300) ;		
+					resetGame();
+				}, 300);
 			}			
-			
+		}
+
+		function resetGame() {
+			count = 0; 
+			player = 1; 
+			for (var i = 1; i <= 3; i++) {
+				for (var j = 1; j <= 3; j++) {
+					document.getElementById("grid" + i + j).innerHTML = "";
+				}
+			}
 		}
              
         </script>
     </head>
     <body>
+        <h2>得分板：X = <span id="scoreX">0</span>, O = <span id="scoreO">0</span></h2>
+        <button onclick="resetGame()">重置遊戲</button>
         <table id="table" border="1px" class="symbol">
             <tr>
                 <td id='grid11' onclick="determine(id);"></td>
