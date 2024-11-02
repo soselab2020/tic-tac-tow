@@ -71,6 +71,7 @@
 						resetGame();
 					}, 300);
 				}
+				updateScoreDisplay(); // 更新得分顯示
 			} else if (count == 9) {
 				setTimeout(() => { 
 					window.alert("平手"); 
@@ -87,6 +88,12 @@
 					document.getElementById("grid" + i + j).innerHTML = "";
 				}
 			}
+			// 不再重置得分，僅清空棋盤
+		}
+
+		function updateScoreDisplay() {
+			document.getElementById("scoreX").innerText = scoreX;
+			document.getElementById("scoreO").innerText = scoreO;
 		}
              
         </script>
