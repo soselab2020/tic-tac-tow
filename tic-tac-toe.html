@@ -2,83 +2,90 @@
 <html>
     <head>
         <meta charset="utf-8">
-		<title>tic-tac-toe</title> 
-        <style type = "text/CSS">
+        <title>tic-tac-toe</title> 
+        <style type="text/css">
             .symbol {
-				font-family: Calibri;
-				font-size: 48px;
+                font-family: Calibri;
+                font-size: 48px;
             }
-			tr {
-				height: 100px;
-			}
-			td {
-				width: 100px;
-				text-align: center;
-			}
+            tr {
+                height: 100px;
+            }
+            td {
+                width: 100px;
+                text-align: center;
+                cursor: pointer;
+            }
+            td:hover {
+                background-color: #f0f0f0;
+            }
         </style>
         <script>
-		var count = 0; 
-		var player = 1;
-		function determine(id) {
-			var grids = [];
-			var isLine = false;
-			var currentSelection = document.getElementById(id);		
+            var count = 0; 
+            var player = 1;
 
-			if (currentSelection.innerHTML) {
-				window.alert("此位置無法選取！");
-			} else if (player == 1) {
-				currentSelection.innerHTML = 'X'; 
-				player = 2; 
-				count++; 
-			} else if (player == 2) {
-				currentSelection.innerHTML = 'O'; 
-				player = 1; 
-				count++;
-			}
-			
-			for (var i = 1; i <= 3; i++) {
-				grids[i] = [];
-				for (var j = 1; j <= 3; j++) {
-					grids[i][j] = document.getElementById("grid" + i + j).innerHTML;
-					console.log("i: " + i + ", j: " + j + ", value: " + grids[i][j]);
-				}				
-			}
+            function determine(id) {
+                var grids = [];
+                var isLine = false;
+                var currentSelection = document.getElementById(id);		
 
-			for (var i = 1; i <= 3; i++) {
-				if ((grids[i][1] != "") && (grids[i][1] == grids[i][2]) && (grids[i][2]== grids[i][3])) {
-					isLine = true;
-				}
-				if ((grids[1][i] != "") && (grids[1][i] == grids[2][i]) && ( grids[2][i] == grids[3][i])) {
-					isLine = true;
-				}				
-			}
-			
-			if (((grids[1][1] != "") && (grids[1][1] == grids[2][2]) && (grids[2][2]== grids[3][3])) || ((grids[3][1] != "") && (grids[3][1] == grids[2][2]) && (grids[2][2]== grids[1][3]))) {
-				isLine = true;
-			}
-			
-			if (isLine == true) {			
-				if (currentSelection.innerHTML == "O") {
-					setTimeout(() => { 
-						window.alert("O贏了！"); 
-						location.reload();
-					}, 300) ;					
-				}
-				else if (currentSelection.innerHTML == "X") {
-					setTimeout(() => { 
-						window.alert("X贏了！"); 
-						location.reload();
-					}, 300) ;		
-				}
-			} else if (count == 9) {
-				setTimeout(() => { 
-					window.alert("平手"); 
-					location.reload();
-				}, 300) ;		
-			}			
-			
-		}
-             
+                if (currentSelection.innerHTML) {
+                    window.alert("此位置無法選取！");
+                } else if (player == 1) {
+                    currentSelection.innerHTML = '<span style="color: blue">X</span>'; 
+                    player = 2; 
+                    count++; 
+                } else if (player == 2) {
+                    currentSelection.innerHTML = '<span style="color: red">O</span>'; 
+                    player = 1; 
+                    count++;
+                }
+
+                document.getElementById("playerTurn").innerText = (player === 1 ? "玩家 X 的回合" : "玩家 O 的回合");
+
+                for (var i = 1; i <= 3; i++) {
+                    grids[i] = [];
+                    for (var j = 1; j <= 3; j++) {
+                        grids[i][j] = document.getElementById("grid" + i + j).innerHTML;
+                    }				
+                }
+
+                for (var i = 1; i <= 3; i++) {
+                    if ((grids[i][1] != "") && (grids[i][1] == grids[i][2]) && (grids[i][2] == grids[i][3])) {
+                        isLine = true;
+                    }
+                    if ((grids[1][i] != "") && (grids[1][i] == grids[2][i]) && (grids[2][i] == grids[3][i])) {
+                        isLine = true;
+                    }				
+                }
+
+                if (((grids[1][1] != "") && (grids[1][1] == grids[2][2]) && (grids[2][2] == grids[3][3])) || ((grids[3][1] != "") && (grids[3][1] == grids[2][2]) && (grids[2][2] == grids[1][3]))) {
+                    isLine = true;
+                }
+
+                if (isLine == true) {			
+                    setTimeout(() => { 
+                        window.alert((currentSelection.innerText == "O" ? "O" : "X") + " 贏了！"); 
+                        resetGame();
+                    }, 300);					
+                } else if (count == 9) {
+                    setTimeout(() => { 
+                        window.alert("平手"); 
+                        resetGame();
+                    }, 300);		
+                }			
+            }
+
+            function resetGame() {
+                for (var i = 1; i <= 3; i++) {
+                    for (var j = 1; j <= 3; j++) {
+                        document.getElementById("grid" + i + j).innerHTML = "";
+                    }
+                }
+                count = 0;
+                player = 1;
+                document.getElementById("playerTurn").innerText = "玩家 X 的回合";
+            }
         </script>
     </head>
     <body>
@@ -99,5 +106,6 @@
                 <td id='grid33' onclick="determine(id);"></td>
             </tr>
         </table>
+        <button onclick="resetGame()">RESET</button>
     </body>
 </html>
