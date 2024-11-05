@@ -60,13 +60,13 @@
 			if (isLine == true) {			
 				if (currentSelection.innerHTML == "O") {
 					setTimeout(() => { 
-						window.alert("O贏了！"); 
+						window.alert("O贏了！, X輸了"); 
 						location.reload();
 					}, 300) ;					
 				}
 				else if (currentSelection.innerHTML == "X") {
 					setTimeout(() => { 
-						window.alert("X贏了！"); 
+						window.alert("X贏了！, O輸了"); 
 						location.reload();
 					}, 300) ;		
 				}
@@ -83,6 +83,7 @@
     </head>
     <body>
         <table id="table" border="1px" class="symbol">
+
             <tr>
                 <td id='grid11' onclick="determine(id);"></td>
                 <td id='grid12' onclick="determine(id);"></td>
